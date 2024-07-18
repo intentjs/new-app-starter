@@ -18,16 +18,19 @@ function checkFileExistsSync(filepath) {
 }
 
 async function bootstrap(buildDirectory) {
-  const console_1 = require(buildDirectory + '/libs/quicksilver/src/console');
-
-  if (!checkFileExistsSync(buildDirectory + '/src/main.js')) {
+  const console_1 = require('@intent/core/dist/lib/console');
+  const logger = console_1.ConsoleLogger;
+  if (!checkFileExistsSync(buildDirectory + '/main.js')) {
     // CHANGE THE FILE TO CHECK IF NEEDED
-    console_1.Logger.error(' PLEASE BUILD THE CLI PROJECT FIRST ');
-    console_1.Logger.info('🪄  Run command: `npm run build` '); // CHANGE THE BUILD COMMAND IF NEEDED
+    logger.error(' PLEASE BUILD THE CLI PROJECT FIRST.');
+    logger.info('🪄  Run command: `npm run build` '); // CHANGE THE BUILD COMMAND IF NEEDED
+    logger.info(
+      'If already built, change the filepath/name of main.js at line:24 in ./intent',
+    );
     return process.exit();
   }
 
-  const app_1 = require(buildDirectory + '/src/app.module'); // CHANGE THE IMPORT IF NEEDED
+  const app_1 = require(buildDirectory + '/app.module'); // CHANGE THE IMPORT IF NEEDED
 
   const app = await core_1.NestFactory.createApplicationContext(
     app_1.AppModule,
@@ -37,12 +40,12 @@ async function bootstrap(buildDirectory) {
   const c = argv._[0];
   argv.command = c;
   if (typeof argv.command != 'string') {
-    console_1.Logger.error(' PLEASE ADD A COMMAND ');
+    logger.error(' PLEASE ADD A COMMAND ');
     return process.exit();
   }
   const command = console_1.CommandMeta.getCommand(argv.command);
   if (!command || !command.target) {
-    console_1.Logger.error(` ${argv.command} : command not found `);
+    logger.error(` ${argv.command} : command not found `);
     return process.exit();
   }
   await console_1.CommandRunner.handle(command, argv);
