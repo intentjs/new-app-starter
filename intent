@@ -1,0 +1,57 @@
+#!/usr/bin/env node
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+const core_1 = require('@nestjs/core');
+const yargs = require('yargs-parser');
+const fs = require('fs');
+const { exec } = require('child_process');
+const config = require('./tsconfig.json');
+
+function checkFileExistsSync(filepath) {
+  let flag = true;
+  try {
+    fs.accessSync(filepath, fs.constants.F_OK);
+  } catch (e) {
+    flag = false;
+  }
+  return flag;
+}
+
+async function bootstrap(buildDirectory) {
+  const console_1 = require(buildDirectory + '/libs/quicksilver/src/console');
+
+  if (!checkFileExistsSync(buildDirectory + '/src/main.js')) {
+    // CHANGE THE FILE TO CHECK IF NEEDED
+    console_1.Logger.error(' PLEASE BUILD THE CLI PROJECT FIRST ');
+    console_1.Logger.info('🪄  Run command: `npm run build` '); // CHANGE THE BUILD COMMAND IF NEEDED
+    return process.exit();
+  }
+
+  const app_1 = require(buildDirectory + '/src/app.module'); // CHANGE THE IMPORT IF NEEDED
+
+  const app = await core_1.NestFactory.createApplicationContext(
+    app_1.AppModule,
+    { logger: true },
+  );
+  const argv = yargs(process.argv.slice(2));
+  const c = argv._[0];
+  argv.command = c;
+  if (typeof argv.command != 'string') {
+    console_1.Logger.error(' PLEASE ADD A COMMAND ');
+    return process.exit();
+  }
+  const command = console_1.CommandMeta.getCommand(argv.command);
+  if (!command || !command.target) {
+    console_1.Logger.error(` ${argv.command} : command not found `);
+    return process.exit();
+  }
+  await console_1.CommandRunner.handle(command, argv);
+  return process.exit();
+}
+const buildDirectory = config.compilerOptions.outDir;
+if (checkFileExistsSync(buildDirectory)) {
+  bootstrap(buildDirectory);
+} else {
+  exec('npm run build', () => bootstrap(buildDirectory));
+}
+//# sourceMappingURL=cli.js.map
