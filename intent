@@ -18,9 +18,9 @@ function checkFileExistsSync(filepath) {
 }
 
 async function bootstrap(buildDirectory) {
-  const console_1 = require('@intent/core/dist/lib/console');
+  const console_1 = require('@intentjs/core/dist/lib/console');
   const logger = console_1.ConsoleLogger;
-  if (!checkFileExistsSync(buildDirectory + '/src/main.js')) {
+  if (!checkFileExistsSync(buildDirectory + '/app/main.js')) {
     // CHANGE THE FILE TO CHECK IF NEEDED
     logger.error(' PLEASE BUILD THE CLI PROJECT FIRST.');
     logger.info('🪄  Run command: `npm run build` '); // CHANGE THE BUILD COMMAND IF NEEDED
@@ -30,7 +30,7 @@ async function bootstrap(buildDirectory) {
     return process.exit();
   }
 
-  const app_1 = require(buildDirectory + '/src/app.module'); // CHANGE THE IMPORT IF NEEDED
+  const app_1 = require(buildDirectory + '/app/app.module'); // CHANGE THE IMPORT IF NEEDED
 
   const app = await core_1.NestFactory.createApplicationContext(
     app_1.AppModule,

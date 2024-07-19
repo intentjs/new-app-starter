@@ -2,7 +2,7 @@ import {
   Formats,
   IntentLoggerOptions,
   Transports,
-} from '@intent/core/dist/lib/logger/options';
+} from '@intentjs/core/dist/lib/logger/options';
 import { registerAs } from '@nestjs/config';
 
 export default registerAs(

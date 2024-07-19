@@ -1,4 +1,4 @@
-import { AppConfig } from '@intent/core/lib';
+import { AppConfig } from '@intentjs/core/lib';
 import { registerAs } from '@nestjs/config';
 
 export default registerAs(
