@@ -1,4 +1,4 @@
-import { StorageOptions } from '@intent/core/lib/storage';
+import { StorageOptions } from '@intent/core/';
 import { registerAs } from '@nestjs/config';
 import { path } from 'app-root-path';
 
