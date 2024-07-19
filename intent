@@ -30,7 +30,7 @@ async function bootstrap(buildDirectory) {
     return process.exit();
   }
 
-  const app_1 = require(buildDirectory + '/app/app.module'); // CHANGE THE IMPORT IF NEEDED
+  const app_1 = require(buildDirectory + '/app/module'); // CHANGE THE IMPORT IF NEEDED
 
   const app = await core_1.NestFactory.createApplicationContext(
     app_1.AppModule,
