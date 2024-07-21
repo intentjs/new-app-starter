@@ -9,7 +9,6 @@ export class IntentAppService {
   ) {}
 
   getHello(): string {
-    console.log(__('hello', { name: 'Intent' }));
     return __('hello', { name: 'Intent' });
   }
 }

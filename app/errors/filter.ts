@@ -1,5 +1,5 @@
-import { IntentExceptionFilter } from '@intentjs/core';
-import { Catch, HttpException, Type } from '@nestjs/common';
+import { IntentExceptionFilter, Request, Response } from '@intentjs/core';
+import { Catch, HttpException, HttpStatus, Type } from '@nestjs/common';
 
 @Catch()
 export class ApplicationExceptionFilter extends IntentExceptionFilter {
@@ -9,5 +9,16 @@ export class ApplicationExceptionFilter extends IntentExceptionFilter {
 
   report(): Array<Type<HttpException>> | string {
     return '*';
+  }
+
+  handleHttp(exception: any, req: Request, res: Response) {
+    console.log('method being called');
+    return res.status(this.getStatus(exception)).send(exception);
+  }
+
+  getStatus(exception: any): HttpStatus {
+    return exception instanceof HttpException
+      ? exception.getStatus()
+      : HttpStatus.INTERNAL_SERVER_ERROR;
   }
 }
