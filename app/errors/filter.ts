@@ -12,7 +12,6 @@ export class ApplicationExceptionFilter extends IntentExceptionFilter {
   }
 
   handleHttp(exception: any, req: Request, res: Response) {
-    console.log('method being called');
     return res.status(this.getStatus(exception)).send(exception);
   }
 
