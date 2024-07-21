@@ -1,8 +1,9 @@
-import { NestFactory } from '@nestjs/core';
+import { RestServer } from '@intentjs/core';
 import { AppModule } from './module';
+import { AbstractHttpAdapter } from '@nestjs/core';
+import { ApplicationExceptionFilter } from './errors/filter';
 
-async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  await app.listen(3000);
-}
-bootstrap();
+RestServer.make(AppModule, {
+  exceptionFilter: (httpAdapter: AbstractHttpAdapter) =>
+    new ApplicationExceptionFilter(httpAdapter),
+});

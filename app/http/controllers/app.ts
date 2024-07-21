@@ -1,12 +1,12 @@
 import { Controller, Get } from '@nestjs/common';
-import { IntentAppService } from '../services';
+import { IntentAppService } from 'app/services';
 
 @Controller()
 export class IntentAppController {
   constructor(private readonly appService: IntentAppService) {}
 
   @Get()
-  getHello(): string {
+  async getHello() {
     return this.appService.getHello();
   }
 }

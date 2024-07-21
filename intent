@@ -6,6 +6,7 @@ const yargs = require('yargs-parser');
 const fs = require('fs');
 const { exec } = require('child_process');
 const config = require('./tsconfig.json');
+require('console.mute');
 
 function checkFileExistsSync(filepath) {
   let flag = true;
@@ -32,10 +33,15 @@ async function bootstrap(buildDirectory) {
 
   const app_1 = require(buildDirectory + '/app/module'); // CHANGE THE IMPORT IF NEEDED
 
+  console.mute();
+
   const app = await core_1.NestFactory.createApplicationContext(
     app_1.AppModule,
-    { logger: true },
+    { logger: false },
   );
+
+  console.resume();
+
   const argv = yargs(process.argv.slice(2));
   const c = argv._[0];
   argv.command = c;
