@@ -1,4 +1,9 @@
-import { IntentExceptionFilter, Request, Response } from '@intentjs/core';
+import {
+  IntentExceptionFilter,
+  Request,
+  Response,
+  ValidationFailed,
+} from '@intentjs/core';
 import { Catch, HttpException, HttpStatus, Type } from '@nestjs/common';
 
 @Catch()
@@ -12,6 +17,9 @@ export class ApplicationExceptionFilter extends IntentExceptionFilter {
   }
 
   handleHttp(exception: any, req: Request, res: Response) {
+    if (exception instanceof ValidationFailed) {
+      return res.send(422).send({ error: 'validation failed' });
+    }
     return res.status(this.getStatus(exception)).send(exception);
   }
 
