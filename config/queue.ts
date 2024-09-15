@@ -1,5 +1,4 @@
-import { QueueOptions } from '@intentjs/core';
-import { registerAs } from '@nestjs/config';
+import { QueueOptions, registerAs } from '@intentjs/core';
 
 export default registerAs('queue', (): QueueOptions => {
   return {

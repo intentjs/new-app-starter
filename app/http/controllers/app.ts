@@ -1,12 +1,13 @@
-import { Controller, Get } from '@nestjs/common';
-import { IntentAppService } from 'app/services';
+import { Controller, Get, Req, Request } from '@intentjs/core';
+import { UserService } from 'app/services';
 
 @Controller()
-export class IntentAppController {
-  constructor(private readonly appService: IntentAppService) {}
+export class UserController {
+  constructor(private readonly service: UserService) {}
 
   @Get()
-  async getHello() {
-    return this.appService.getHello();
+  async getHello(@Req() req: Request) {
+    console.log(req.all());
+    return this.service.getHello();
   }
 }

@@ -1,9 +1,9 @@
 import {
   AppConfig,
+  registerAs,
   toBoolean,
   ValidationErrorSerializer,
 } from '@intentjs/core';
-import { registerAs } from '@nestjs/config';
 
 export default registerAs(
   'app',

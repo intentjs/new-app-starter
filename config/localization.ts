@@ -1,5 +1,4 @@
-import { LocalizationOptions } from '@intentjs/core';
-import { registerAs } from '@nestjs/config';
+import { LocalizationOptions, registerAs } from '@intentjs/core';
 
 export default registerAs(
   'localization',

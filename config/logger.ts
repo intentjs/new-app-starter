@@ -2,10 +2,10 @@ import {
   Formats,
   IntentLoggerOptions,
   LogLevel,
+  registerAs,
   toBoolean,
   Transports,
 } from '@intentjs/core';
-import { registerAs } from '@nestjs/config';
 
 export default registerAs(
   'logger',

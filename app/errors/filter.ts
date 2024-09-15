@@ -1,10 +1,13 @@
 import {
+  Catch,
+  HttpException,
+  HttpStatus,
   IntentExceptionFilter,
   Request,
   Response,
+  Type,
   ValidationFailed,
 } from '@intentjs/core';
-import { Catch, HttpException, HttpStatus, Type } from '@nestjs/common';
 
 @Catch()
 export class ApplicationExceptionFilter extends IntentExceptionFilter {

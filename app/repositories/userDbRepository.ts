@@ -1,5 +1,4 @@
-import { DatabaseRepository, InjectModel } from '@intentjs/core';
-import { Injectable } from '@nestjs/common';
+import { DatabaseRepository, Injectable, InjectModel } from '@intentjs/core';
 import { UserModel } from '../models/userModel';
 
 @Injectable()
