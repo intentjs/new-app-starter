@@ -23,14 +23,22 @@ export default registerAs('queue', (): QueueOptions => {
      * You can define different queue connections inside the
      * "connections" attribute.
      *
-     * Available Queue Drivers - "sync", "sqs", "redis"
+     * Available Queue Drivers - "sync", "sqs", "redis", "db"
      */
     connections: {
-      sync: {
-        driver: 'sync',
+      db: {
+        driver: 'db',
         listenerType: 'poll',
+        table: 'intent_jobs',
+        queue: 'default',
       },
 
+      /**
+       * sync: {
+       *   driver: 'sync',
+       *   listenerType: 'poll',
+       * },
+       */
       /**
        * sqs: {
        *   driver: 'sqs',
@@ -43,7 +51,6 @@ export default registerAs('queue', (): QueueOptions => {
        *   region: process.env.AWS_REGION,
        * },
        */
-
       /**
        * redis: {
        *   driver: 'redis',
