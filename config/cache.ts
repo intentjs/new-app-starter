@@ -1,5 +1,4 @@
-import { CacheOptions } from '@intentjs/core';
-import { registerAs } from '@nestjs/config';
+import { CacheOptions, registerAs } from '@intentjs/core';
 
 export default registerAs(
   'cache',

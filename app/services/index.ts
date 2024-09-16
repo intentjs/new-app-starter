@@ -1,9 +1,8 @@
-import { __ } from '@intentjs/core';
-import { Inject, Injectable } from '@nestjs/common';
+import { __, Inject, Injectable } from '@intentjs/core';
 import { UserDbRepository } from 'app/repositories/userDbRepository';
 
 @Injectable()
-export class IntentAppService {
+export class UserService {
   constructor(
     @Inject('USER_DB_REPO') private readonly users: UserDbRepository,
   ) {}

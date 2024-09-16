@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 'use strict';
 Object.defineProperty(exports, '__esModule', { value: true });
-const core_1 = require('@nestjs/core');
 const yargs = require('yargs-parser');
 const fs = require('fs');
 const { exec } = require('child_process');
@@ -19,25 +18,20 @@ function checkFileExistsSync(filepath) {
 }
 
 async function bootstrap(buildDirectory) {
-  const console_1 = require('@intentjs/core/dist/lib/console');
-  const logger = console_1.ConsoleLogger;
+  const intent_1 = require('@intentjs/core');
+
   if (!checkFileExistsSync(buildDirectory + '/app/main.js')) {
     // CHANGE THE FILE TO CHECK IF NEEDED
-    logger.error(' PLEASE BUILD THE CLI PROJECT FIRST.');
-    logger.info('🪄  Run command: `npm run build` '); // CHANGE THE BUILD COMMAND IF NEEDED
-    logger.info(
-      'If already built, change the filepath/name of main.js at line:24 in ./intent',
-    );
+    intent_1.ConsoleLogger.error(' PLEASE BUILD THE CLI PROJECT FIRST ');
+    intent_1.ConsoleLogger.info('🪄  Run command: `npm run build` ');
     return process.exit();
   }
 
-  const app_1 = require(buildDirectory + '/app/module'); // CHANGE THE IMPORT IF NEEDED
-
+  const container = require(buildDirectory + '/app/boot/container');
   console.mute();
 
-  const app = await core_1.NestFactory.createApplicationContext(
-    app_1.AppModule,
-    { logger: false },
+  const app = await intent_1.ContainerFactory.createStandalone(
+    container.ApplicationContainer,
   );
 
   console.resume();
@@ -46,15 +40,15 @@ async function bootstrap(buildDirectory) {
   const c = argv._[0];
   argv.command = c;
   if (typeof argv.command != 'string') {
-    logger.error(' PLEASE ADD A COMMAND ');
+    intent_1.ConsoleLogger.error(' PLEASE ADD A COMMAND ');
     return process.exit();
   }
-  const command = console_1.CommandMeta.getCommand(argv.command);
+  const command = intent_1.CommandMeta.getCommand(argv.command);
   if (!command || !command.target) {
-    logger.error(` ${argv.command} : command not found `);
+    intent_1.ConsoleLogger.error(` ${argv.command} : command not found `);
     return process.exit();
   }
-  await console_1.CommandRunner.handle(command, argv);
+  await intent_1.CommandRunner.handle(command, argv);
   return process.exit();
 }
 const buildDirectory = config.compilerOptions.outDir;

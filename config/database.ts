@@ -1,5 +1,4 @@
-import { DatabaseOptions } from '@intentjs/core';
-import { registerAs } from '@nestjs/config';
+import { DatabaseOptions, registerAs } from '@intentjs/core';
 import { knexSnakeCaseMappers } from 'objection';
 
 export default registerAs(

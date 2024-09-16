@@ -1,6 +1,6 @@
 {
-  "name": "new-app-starter",
-  "version": "0.0.1",
+  "name": "@intentjs/new-app-starter",
+  "version": "0.0.2",
   "description": "A starter template for intent application",
   "author": "Vinayak Sarawagi <vinayaksarawagi25@gmail.com>",
   "private": true,
@@ -28,11 +28,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
-    "@intentjs/core": "^0.1.27",
-    "@nestjs/common": "^10.0.0",
-    "@nestjs/config": "^3.2.3",
-    "@nestjs/core": "^10.0.0",
-    "@nestjs/platform-express": "^10.0.0",
+    "@intentjs/core": "^0.1.30",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
     "knex": "^3.1.0",
@@ -40,11 +36,9 @@
     "objection": "^3.1.4",
     "reflect-metadata": "^0.2.0",
     "sqlite3": "^5.1.7",
-    "winston": "^3.13.1"
+    "winston": "^3.14.2"
   },
   "devDependencies": {
-    "@nestjs/cli": "^10.0.0",
-    "@nestjs/schematics": "^10.0.0",
     "@nestjs/testing": "^10.0.0",
     "@types/express": "^4.17.17",
     "@types/jest": "^29.5.2",

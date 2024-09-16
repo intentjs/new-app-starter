@@ -1,5 +1,4 @@
-import { StorageOptions } from '@intentjs/core';
-import { registerAs } from '@nestjs/config';
+import { registerAs, StorageOptions } from '@intentjs/core';
 
 export default registerAs(
   'filesystem',

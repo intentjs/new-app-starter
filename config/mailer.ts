@@ -1,5 +1,4 @@
-import { MailerOptions } from '@intentjs/core';
-import { registerAs } from '@nestjs/config';
+import { MailerOptions, registerAs } from '@intentjs/core';
 
 export default registerAs(
   'mailers',

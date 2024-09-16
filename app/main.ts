@@ -1,9 +1,10 @@
-import { RestServer } from '@intentjs/core';
-import { AppModule } from './module';
-import { AbstractHttpAdapter } from '@nestjs/core';
+import { HttpKernel } from './http/kernel';
+import { ApplicationContainer } from './boot/container';
 import { ApplicationExceptionFilter } from './errors/filter';
+import { IntentHttpServer } from '@intentjs/core';
 
-RestServer.make(AppModule, {
-  exceptionFilter: (httpAdapter: AbstractHttpAdapter) =>
-    new ApplicationExceptionFilter(httpAdapter),
-});
+IntentHttpServer.init()
+  .useContainer(ApplicationContainer)
+  .useKernel(HttpKernel)
+  .handleErrorsWith(ApplicationExceptionFilter)
+  .start();
