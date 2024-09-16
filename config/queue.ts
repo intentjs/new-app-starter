@@ -39,6 +39,7 @@ export default registerAs('queue', (): QueueOptions => {
        *   listenerType: 'poll',
        * },
        */
+
       /**
        * sqs: {
        *   driver: 'sqs',
@@ -51,6 +52,7 @@ export default registerAs('queue', (): QueueOptions => {
        *   region: process.env.AWS_REGION,
        * },
        */
+
       /**
        * redis: {
        *   driver: 'redis',

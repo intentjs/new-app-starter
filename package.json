@@ -28,7 +28,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
-    "@intentjs/core": "^0.1.28-next4",
+    "@intentjs/core": "^0.1.30",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
     "knex": "^3.1.0",
@@ -36,7 +36,7 @@
     "objection": "^3.1.4",
     "reflect-metadata": "^0.2.0",
     "sqlite3": "^5.1.7",
-    "winston": "^3.13.1"
+    "winston": "^3.14.2"
   },
   "devDependencies": {
     "@nestjs/testing": "^10.0.0",
