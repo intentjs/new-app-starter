@@ -1,9 +1,12 @@
 {
+
+
   "compilerOptions": {
     "jsx": "react-jsx",
     "module": "commonjs",
     "declaration": true,
     "removeComments": true,
+    "esModuleInterop": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
@@ -18,5 +21,12 @@
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false
-  }
+  },
+  "include": ["app", "bin", "libs", "config", "resources"],
+  "exclude": ["node_modules","dist"],
+  "ts-node": {
+    "swc": true,
+    "transpileOnly":true,
+    "require": ["tsconfig-paths/register"]
+  },
 }

@@ -1,60 +1,23 @@
 #!/usr/bin/env node
-'use strict';
-Object.defineProperty(exports, '__esModule', { value: true });
-const yargs = require('yargs-parser');
-const fs = require('fs');
-const { exec } = require('child_process');
-const config = require('./tsconfig.json');
-require('console.mute');
 
-function checkFileExistsSync(filepath) {
-  let flag = true;
-  try {
-    fs.accessSync(filepath, fs.constants.F_OK);
-  } catch (e) {
-    flag = false;
-  }
-  return flag;
-}
+/*
+|--------------------------------------------------------------------------
+| JavaScript entrypoint for running ace commands
+|--------------------------------------------------------------------------
+|
+| !!! DO NOT MODIFY THIS FILE !!!
+|
+| Since, "node" binary cannot directly run the Typescript source, we need a JS based
+| entrypoint to run intent commands.
+|
+*/
 
-async function bootstrap(buildDirectory) {
-  const intent_1 = require('@intentjs/core');
+/**
+ *  * Register hook to process TypeScript files using ts-node
+ */
+require('ts-node').register();
 
-  if (!checkFileExistsSync(buildDirectory + '/app/main.js')) {
-    // CHANGE THE FILE TO CHECK IF NEEDED
-    intent_1.ConsoleLogger.error(' PLEASE BUILD THE CLI PROJECT FIRST ');
-    intent_1.ConsoleLogger.info('🪄  Run command: `npm run build` ');
-    return process.exit();
-  }
-
-  const container = require(buildDirectory + '/app/boot/container');
-  console.mute();
-
-  const app = await intent_1.ContainerFactory.createStandalone(
-    container.ApplicationContainer,
-  );
-
-  console.resume();
-
-  const argv = yargs(process.argv.slice(2));
-  const c = argv._[0];
-  argv.command = c;
-  if (typeof argv.command != 'string') {
-    intent_1.ConsoleLogger.error(' PLEASE ADD A COMMAND ');
-    return process.exit();
-  }
-  const command = intent_1.CommandMeta.getCommand(argv.command);
-  if (!command || !command.target) {
-    intent_1.ConsoleLogger.error(` ${argv.command} : command not found `);
-    return process.exit();
-  }
-  await intent_1.CommandRunner.handle(command, argv);
-  return process.exit();
-}
-const buildDirectory = config.compilerOptions.outDir;
-if (checkFileExistsSync(buildDirectory)) {
-  bootstrap(buildDirectory);
-} else {
-  exec('npm run build', () => bootstrap(buildDirectory));
-}
-//# sourceMappingURL=cli.js.map
+/**
+ * Import console commands entrypoint
+ */
+require('./bin/console');

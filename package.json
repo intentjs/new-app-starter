@@ -3,7 +3,7 @@
   "version": "0.0.2",
   "description": "A starter template for intent application",
   "author": "Vinayak Sarawagi <vinayaksarawagi25@gmail.com>",
-  "private": true,
+  "private": false,
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -14,12 +14,10 @@
   },
   "homepage": "https://github.com/intentjs/new-app-starter",
   "scripts": {
-    "build": "nest build",
+    "build": "./node_modules/.bin/intent build",
     "format": "prettier --write \"app/**/*.ts\" \"test/**/*.ts\"",
-    "start": "nest start",
-    "start:dev": "nest start --watch",
-    "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/main",
+    "start": "./node_modules/.bin/intent start",
+    "start:dev": "./node_modules/.bin/intent start --watch",
     "lint": "eslint \"{app,libs,test}/**/*.ts\" --fix",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -28,7 +26,8 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
-    "@intentjs/core": "^0.1.31",
+    "@intentjs/cli": "^0.0.2",
+    "@intentjs/core": "^0.1.32",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
     "knex": "^3.1.0",
@@ -40,6 +39,8 @@
   },
   "devDependencies": {
     "@nestjs/testing": "^10.0.0",
+    "@swc/cli": "^0.4.1-nightly.20240914",
+    "@swc/core": "^1.7.26",
     "@types/express": "^4.17.17",
     "@types/jest": "^29.5.2",
     "@types/node": "^20.3.1",
