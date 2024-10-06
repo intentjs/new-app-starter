@@ -21,9 +21,12 @@ export class ApplicationExceptionFilter extends IntentExceptionFilter {
 
   handleHttp(exception: any, req: Request, res: Response) {
     if (exception instanceof ValidationFailed) {
-      return res.send(422).send({ error: 'validation failed' });
+      return res
+        .status(422)
+        .json({ message: 'validation failed', errors: exception.getErrors() });
     }
-    return res.status(this.getStatus(exception)).send(exception);
+
+    return res.status(this.getStatus(exception)).json(exception);
   }
 
   getStatus(exception: any): HttpStatus {

@@ -1,6 +1,6 @@
 {
   "name": "@intentjs/new-app-starter",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A starter template for intent application",
   "author": "Vinayak Sarawagi <vinayaksarawagi25@gmail.com>",
   "private": false,
@@ -26,8 +26,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
-    "@intentjs/cli": "^0.0.2",
-    "@intentjs/core": "^0.1.33",
+    "@intentjs/core": "^0.1.35",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
     "knex": "^3.1.0",
@@ -38,6 +37,7 @@
     "winston": "^3.14.2"
   },
   "devDependencies": {
+    "@intentjs/cli": "^0.0.3",
     "@nestjs/testing": "^10.0.0",
     "@swc/cli": "^0.4.1-nightly.20240914",
     "@swc/core": "^1.7.26",
