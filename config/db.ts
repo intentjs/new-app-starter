@@ -5,7 +5,7 @@ export default configNamespace(
   'db',
   (): DatabaseOptions => ({
     isGlobal: true,
-    default: 'pg',
+    default: process.env.DEFAULT_DB || 'pg',
     connections: {
       pg: {
         client: 'pg',

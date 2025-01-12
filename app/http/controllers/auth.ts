@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Dto,
   Get,
   Post,
   Transformable,
@@ -31,7 +32,7 @@ export class AuthController extends Transformable {
 
   @Post('login')
   @Validate(LoginDto)
-  async login(@Body() dto: LoginDto) {
+  async login(@Dto() dto: LoginDto) {
     const user = await this.auth.login(dto);
     return this.item(user, new UserTransformer());
   }
