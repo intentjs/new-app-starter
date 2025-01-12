@@ -33,38 +33,38 @@ export default configNamespace('queue', (): QueueOptions => {
         queue: 'default',
       },
 
-      /**
-       * sync: {
-       *   driver: 'sync',
-       *   listenerType: 'poll',
-       * },
+      /*
+        sync: {
+          driver: 'sync',
+          listenerType: 'poll',
+        },
        */
 
-      /**
-       * sqs: {
-       *   driver: 'sqs',
-       *   listenerType: 'poll',
-       *   apiVersion: '2012-11-05',
-       *   credentials: null,
-       *   prefix: process.env.SQS_PREFIX,
-       *   queue: process.env.SQS_QUEUE,
-       *   suffix: '',
-       *   region: process.env.AWS_REGION,
-       * },
+      /*
+        sqs: {
+          driver: 'sqs',
+          listenerType: 'poll',
+          apiVersion: '2012-11-05',
+          credentials: null,
+          prefix: process.env.SQS_PREFIX,
+          queue: process.env.SQS_QUEUE,
+          suffix: '',
+          region: process.env.AWS_REGION,
+        },
        */
 
-      /**
-       * redis: {
-       *   driver: 'redis',
-       *   listenerType: 'poll',
-       *   host: process.env.REDIS_HOST,
-       *   port: +process.env.REDIS_PORT,
-       *   queue: process.env.QUEUE_NAME,
-       *   username: process.env.REDIS_USERNAME,
-       *   password: process.env.REDIS_PASSWORD,
-       *   prefix: '',
-       *   database: 0,
-       * },
+      /*
+        redis: {
+          driver: 'redis',
+          listenerType: 'poll',
+          host: process.env.REDIS_HOST,
+          port: +process.env.REDIS_PORT,
+          queue: process.env.QUEUE_NAME,
+          username: process.env.REDIS_USERNAME,
+          password: process.env.REDIS_PASSWORD,
+          prefix: '',
+          database: 0,
+        },
        */
     },
   };
