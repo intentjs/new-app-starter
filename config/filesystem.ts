@@ -32,17 +32,6 @@ export default configNamespace(
         driver: 'local',
         basePath: 'storage/uploads',
       },
-
-      /**
-       *  s3: {
-       *    driver: 's3',
-       *    region: process.env.AWS_REGION,
-       *    bucket: process.env.S3_BUCKET,
-       *    accessKey: process.env.AWS_ACCESS_KEY, // either use access key / secret key or the credentials
-       *    secretKey: process.env.AWS_SECRET_KEY,
-       *    credentials: fromIni({ profile: process.env.AWS_PROFILE }),
-       *  },
-       */
     },
   }),
 );

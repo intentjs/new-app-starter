@@ -22,37 +22,6 @@ export default configNamespace(
       logger: {
         provider: 'logger',
       },
-
-      /**
-       * smtp: {
-       *   provider: 'smtp',
-       *   host: process.env.MAIL_HOST,
-       *   port: process.env.MAIL_PORT,
-       *   username: process.env.MAIL_USER,
-       *   password: process.env.MAIL_PASSWORD,
-       *   ignoreTLS: false,
-       *   requireTLS: false,
-       *   from: process.env.FROM_ADDRESS,
-       * },
-       */
-
-      /**
-       * mailgun: {
-       *   provider: 'mailgun',
-       *   username: process.env.MAILGUN_USERNAME,
-       *   key: process.env.MAILGUN_API_KEY,
-       *   domain: process.env.MAILGUN_DOMAIN,
-       *   from: process.env.FROM_ADDRESS,
-       * },
-       */
-
-      /**
-       * resend: {
-       *   provider: 'resend',
-       *   apiKey: process.env.RESEND_API_KEY,
-       *   from: process.env.FROM_ADDRESS,
-       * },
-       */
     },
 
     template: {
