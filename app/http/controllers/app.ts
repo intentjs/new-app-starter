@@ -8,7 +8,5 @@ export class UserController {
   @Get()
   async getHello(@Req() req: Request, @Res() res: Response) {
     return res.json({ hello: 'world' });
-    req.path;
-    return { hello: 'world' };
   }
 }
