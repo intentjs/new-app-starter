@@ -30,6 +30,7 @@ async function bootstrap() {
   }
 
   await CommandRunner.handle(command, argv);
+  process.exit();
 }
 
 bootstrap();
