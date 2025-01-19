@@ -40,7 +40,7 @@
     "winston": "^3.14.2"
   },
   "devDependencies": {
-    "@intentjs/cli": "^0.0.14",
+    "@intentjs/cli": "^0.0.15",
     "@nestjs/testing": "^10.0.0",
     "@swc/cli": "^0.6.0",
     "@swc/core": "^1.7.26",
