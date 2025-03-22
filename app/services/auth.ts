@@ -9,9 +9,9 @@ import {
   Unauthorized,
   ValidationFailed,
 } from '@intentjs/core';
-import { UserModel } from 'app/models/userModel';
-import { UserDbRepository } from 'app/repositories/userDbRepository';
-import { generateOtp } from 'app/utils';
+import { UserModel } from '#models/user';
+import { UserDbRepository } from '#repositories/user-repository';
+import { generateOtp } from '#utils/index';
 import {
   ChangePasswordUsingTokenDto,
   LoginDto,
@@ -19,11 +19,14 @@ import {
   RequestPasswordChangeOtpDto,
   VerifyEmailDto,
   VerifyOtpForChangePasswordDto,
-} from 'app/validators/auth';
+} from '#validators/auth';
 import { compareSync, hashSync } from 'bcrypt';
-import { JwtPayload, sign, verify } from 'jsonwebtoken';
+import JWT, { Secret, SignOptions } from 'jsonwebtoken';
+import type { JwtPayload } from 'jsonwebtoken';
 import { ulid } from 'ulid';
+import { StringValue } from 'ms';
 
+const { sign, verify } = JWT;
 @Injectable()
 export class AuthService {
   constructor(
@@ -152,10 +155,14 @@ export class AuthService {
     }
 
     const payload = { email: dto.email, purpose: 'CHANGE_PASSWORD' };
-    const token = sign(payload, this.config.get<string>('auth.secret'), {
-      issuer: this.config.get<string>('app.url'),
-      expiresIn: '15m',
-    });
+    const token = sign(
+      payload,
+      this.config.get<string>('auth.secret') as Secret,
+      {
+        issuer: this.config.get<string>('app.url'),
+        expiresIn: '15m',
+      },
+    );
 
     return token;
   }
@@ -183,9 +190,10 @@ export class AuthService {
   }
 
   async makeToken(payload: Record<string, any>): Promise<string> {
-    return sign(payload, this.config.get('auth.secret') as string, {
+    const options: SignOptions = {
       issuer: this.config.get('app.url') as string,
-      expiresIn: this.config.get('auth.ttl') as string,
-    });
+      expiresIn: this.config.get('auth.ttl') as StringValue,
+    };
+    return sign(payload, this.config.get('auth.secret') as Secret, options);
   }
 }

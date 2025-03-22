@@ -1,5 +1,5 @@
 import { IntentApplicationContext, ServiceProvider } from '@intentjs/core';
-import { GreetingCommand } from 'app/console/greeting';
+import { GreetingCommand } from '#console/greeting';
 
 export class ConsoleServiceProvider extends ServiceProvider {
   /**

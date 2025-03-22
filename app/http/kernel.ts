@@ -6,9 +6,9 @@ import {
   MiddlewareConfigurator,
   Type,
 } from '@intentjs/core';
-import { UserController } from './controllers/app';
-import { AuthController } from './controllers/auth';
 import { Server } from '@intentjs/hyper-express';
+import { UserController } from '#http/controllers/app';
+import { AuthController } from '#http/controllers/auth';
 
 export class HttpKernel extends Kernel {
   /**
