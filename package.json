@@ -44,6 +44,7 @@
   },
   "dependencies": {
     "@intentjs/core": "^0.1.46-alpha.3",
+    "@intentjs/tooling": "^0.0.3",
     "bcrypt": "^5.1.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
@@ -57,7 +58,7 @@
     "winston": "^3.14.2"
   },
   "devDependencies": {
-    "@intentjs/cli": "^0.0.18-alpha.1",
+    "@intentjs/cli": "^0.0.18-alpha.3",
     "@nestjs/testing": "^10.0.0",
     "@swc/cli": "^0.6.0",
     "@swc/core": "^1.11.11",
