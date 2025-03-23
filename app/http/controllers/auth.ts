@@ -1,20 +1,14 @@
-import {
-  Body,
-  Controller,
-  Dto,
-  Get,
-  Post,
-  Transformable,
-  Validate,
-} from '@intentjs/core';
-import { AuthService } from 'app/services/auth';
-import { UserTransformer } from 'app/transformers/user';
+import { Transformable } from '@intentjs/core';
+import { AuthService } from '#services/auth';
+import { UserTransformer } from '#transformers/user';
 import {
   LoginDto,
   RegisterDto,
   RequestPasswordChangeOtpDto,
   VerifyEmailDto,
-} from 'app/validators/auth';
+} from '#validators/auth';
+import { Body, Controller, Dto, Get, Post } from '@intentjs/core/http';
+import { Validate } from '@intentjs/core/validator';
 
 @Controller('auth')
 export class AuthController extends Transformable {

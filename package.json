@@ -12,6 +12,7 @@
   "bugs": {
     "url": "https://github.com/intentjs/new-app-starter/issues"
   },
+  "type": "module",
   "homepage": "https://github.com/intentjs/new-app-starter",
   "scripts": {
     "build": "node intent build",
@@ -25,8 +26,24 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
+  "imports": {
+    "#http/*": "./app/http/*.js",
+    "#models/*": "./app/models/*.js",
+    "#services/*": "./app/services/*.js",
+    "#utils/*": "./app/utils/*.js",
+    "#boot/*": "./app/boot/*.js",
+    "#errors/*": "./app/errors/*.js",
+    "#repositories/*": "./app/repositories/*.js",
+    "#events/*": "./app/events/*.js",
+    "#jobs/*": "./app/jobs/*.js",
+    "#listeners/*": "./app/listeners/*.js",
+    "#console/*": "./app/console/*.js",
+    "#config/*": "./config/*.js",
+    "#transformers/*": "./app/transformers/*.js",
+    "#validators/*": "./app/validators/*.js"
+  },
   "dependencies": {
-    "@intentjs/core": "^0.1.45",
+    "@intentjs/core": "^0.1.47",
     "bcrypt": "^5.1.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
@@ -40,10 +57,11 @@
     "winston": "^3.14.2"
   },
   "devDependencies": {
-    "@intentjs/cli": "^0.0.15",
+    "@intentjs/cli": "^0.0.18",
+    "@intentjs/tooling": "^0.0.3",
     "@nestjs/testing": "^10.0.0",
     "@swc/cli": "^0.6.0",
-    "@swc/core": "^1.7.26",
+    "@swc/core": "^1.11.11",
     "@types/bcrypt": "^5.0.2",
     "@types/jest": "^29.5.2",
     "@types/jsonwebtoken": "^9.0.7",

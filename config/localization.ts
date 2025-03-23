@@ -1,4 +1,5 @@
-import { LocalizationOptions, configNamespace } from '@intentjs/core';
+import { LocalizationOptions } from '@intentjs/core/locale';
+import { configNamespace } from '@intentjs/core/config';
 
 export default configNamespace(
   'localization',

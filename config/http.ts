@@ -1,5 +1,7 @@
-import { findProjectRoot, HttpConfig, configNamespace } from '@intentjs/core';
+import { HttpConfig } from '@intentjs/core/http';
+import { configNamespace } from '@intentjs/core/config';
 import { join } from 'path';
+import { findProjectRoot } from '@intentjs/core/helpers';
 
 export default configNamespace(
   'http',

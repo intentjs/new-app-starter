@@ -1,4 +1,4 @@
-import { BaseModel } from '@intentjs/core';
+import { BaseModel } from '@intentjs/core/db';
 
 export class UserModel extends BaseModel {
   static tableName = 'users';
@@ -20,7 +20,7 @@ export class UserModel extends BaseModel {
   /**
    * Columns
    */
-  id?: string;
+  declare id?: string;
   firstName: string;
   lastName: string;
   email: string;

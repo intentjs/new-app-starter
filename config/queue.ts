@@ -1,4 +1,5 @@
-import { QueueOptions, configNamespace } from '@intentjs/core';
+import { configNamespace } from '@intentjs/core/config';
+import { QueueOptions } from '@intentjs/core/queue';
 
 export default configNamespace('queue', (): QueueOptions => {
   return {
