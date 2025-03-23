@@ -1,14 +1,4 @@
-import {
-  Cache,
-  GenericException,
-  Inject,
-  Injectable,
-  ConfigService,
-  Mail,
-  MailMessage,
-  Unauthorized,
-  ValidationFailed,
-} from '@intentjs/core';
+import { Inject, Injectable } from '@intentjs/core';
 import { UserModel } from '#models/user';
 import { UserDbRepository } from '#repositories/user-repository';
 import { generateOtp } from '#utils/index';
@@ -25,6 +15,14 @@ import JWT, { Secret, SignOptions } from 'jsonwebtoken';
 import type { JwtPayload } from 'jsonwebtoken';
 import { ulid } from 'ulid';
 import { StringValue } from 'ms';
+import { ConfigService } from '@intentjs/core/config';
+import {
+  GenericException,
+  Unauthorized,
+  ValidationFailed,
+} from '@intentjs/core/errors';
+import { Cache } from '@intentjs/core/cache';
+import { Mail, MailMessage } from '@intentjs/core/mail';
 
 const { sign, verify } = JWT;
 @Injectable()

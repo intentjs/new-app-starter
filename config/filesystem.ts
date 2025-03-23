@@ -1,4 +1,5 @@
-import { configNamespace, StorageOptions } from '@intentjs/core';
+import { StorageOptions } from '@intentjs/core/storage';
+import { configNamespace } from '@intentjs/core/config';
 
 export default configNamespace(
   'filesystem',
