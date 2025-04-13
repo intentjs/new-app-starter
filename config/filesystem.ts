@@ -1,8 +1,8 @@
-import { StorageOptions } from '@intentjs/core/storage';
-import { configNamespace } from '@intentjs/core/config';
+import { StorageOptions } from "@intentjs/core/storage";
+import { configNamespace } from "@intentjs/core/config";
 
 export default configNamespace(
-  'filesystem',
+  "filesystem",
   (): StorageOptions => ({
     /**
      * -----------------------------------------------------
@@ -15,7 +15,7 @@ export default configNamespace(
      * files.
      */
 
-    default: process.env.DEFAULT_STORAGE || 'local',
+    default: process.env.DEFAULT_STORAGE || "local",
 
     /**
      * -----------------------------------------------------
@@ -30,9 +30,9 @@ export default configNamespace(
      */
     disks: {
       local: {
-        driver: 'local',
-        basePath: 'storage/uploads',
+        driver: "local",
+        basePath: "storage/uploads",
       },
     },
-  }),
+  })
 );

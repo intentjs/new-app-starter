@@ -1,7 +1,7 @@
-import { Type } from '@intentjs/core';
-import { ConfigService } from '@intentjs/core/config';
-import { ExceptionHandler, HttpException } from '@intentjs/core/errors';
-import { ExecutionContext } from '@intentjs/core/http';
+import { Type } from "@intentjs/core";
+import { ConfigService } from "@intentjs/core/config";
+import { ExceptionHandler, HttpException } from "@intentjs/core/errors";
+import { ExecutionContext } from "@intentjs/core/http";
 
 export class ApplicationExceptionHandler extends ExceptionHandler {
   constructor(private config: ConfigService) {
@@ -13,7 +13,7 @@ export class ApplicationExceptionHandler extends ExceptionHandler {
   }
 
   report(): Array<Type<HttpException>> | string {
-    return '*';
+    return "*";
   }
 
   handleHttp(context: ExecutionContext, exception: any) {

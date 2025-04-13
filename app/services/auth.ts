@@ -1,7 +1,7 @@
-import { Inject, Injectable } from '@intentjs/core';
-import { UserModel } from '#models/user';
-import { UserDbRepository } from '#repositories/user-repository';
-import { generateOtp } from '#utils/index';
+import { Inject, Injectable } from "@intentjs/core";
+import { UserModel } from "#models/user";
+import { UserDbRepository } from "#repositories/user-repository";
+import { generateOtp } from "#utils/index";
 import {
   ChangePasswordUsingTokenDto,
   LoginDto,
@@ -9,38 +9,38 @@ import {
   RequestPasswordChangeOtpDto,
   VerifyEmailDto,
   VerifyOtpForChangePasswordDto,
-} from '#validators/auth';
-import { compareSync, hashSync } from 'bcrypt';
-import JWT, { Secret, SignOptions } from 'jsonwebtoken';
-import type { JwtPayload } from 'jsonwebtoken';
-import { ulid } from 'ulid';
-import { StringValue } from 'ms';
-import { ConfigService } from '@intentjs/core/config';
+} from "#validators/auth";
+import { compareSync, hashSync } from "bcrypt";
+import JWT, { Secret, SignOptions } from "jsonwebtoken";
+import type { JwtPayload } from "jsonwebtoken";
+import { ulid } from "ulid";
+import { StringValue } from "ms";
+import { ConfigService } from "@intentjs/core/config";
 import {
   GenericException,
   Unauthorized,
   ValidationFailed,
-} from '@intentjs/core/errors';
-import { Cache } from '@intentjs/core/cache';
-import { Mail, MailMessage } from '@intentjs/core/mail';
+} from "@intentjs/core/errors";
+import { Cache } from "@intentjs/core/cache";
+import { Mail, MailMessage } from "@intentjs/core/mail";
 
 const { sign, verify } = JWT;
 @Injectable()
 export class AuthService {
   constructor(
     private config: ConfigService,
-    @Inject('USER_DB_REPO') private users: UserDbRepository,
+    @Inject("USER_DB_REPO") private users: UserDbRepository
   ) {}
 
   async register(dto: RegisterDto): Promise<UserModel> {
     const existingUser = await this.users.firstWhere(
       { email: dto.email },
-      false,
+      false
     );
 
     if (existingUser) {
       throw new ValidationFailed({
-        email: ['Email is already used by another account!'],
+        email: ["Email is already used by another account!"],
       });
     }
 
@@ -55,7 +55,7 @@ export class AuthService {
 
     user.token = await this.makeToken({
       sub: user.id,
-      env: this.config.get('app.env'),
+      env: this.config.get("app.env"),
       emailVerifiedAt: user.emailVerifiedAt,
       passwordChangedAt: user.passwordChangedAt,
     });
@@ -72,7 +72,7 @@ export class AuthService {
 
     user.token = await this.makeToken({
       sub: user.id,
-      env: this.config.get('app.env'),
+      env: this.config.get("app.env"),
       emailVerifiedAt: user.emailVerifiedAt,
       passwordChangedAt: user.passwordChangedAt,
     });
@@ -84,56 +84,56 @@ export class AuthService {
     const payload = await this.verifyToken(dto.token);
     if (payload.email != dto.email) {
       throw new GenericException(
-        'Oops! looks like verification was not requested for this email.',
+        "Oops! looks like verification was not requested for this email."
       );
     }
 
     const user = await this.users.firstWhere({ email: dto.email });
     await this.users.updateWhere(
       { email: user.email },
-      { emailVerifiedAt: new Date() },
+      { emailVerifiedAt: new Date() }
     );
   }
 
   async requestPasswordChangeOtp(
-    dto: RequestPasswordChangeOtpDto,
+    dto: RequestPasswordChangeOtpDto
   ): Promise<void> {
     const user = await this.users.firstWhere({ email: dto.email }, false);
     if (!user) {
       throw new ValidationFailed({
-        email: ['Cannot find any user with this email'],
+        email: ["Cannot find any user with this email"],
       });
     }
 
-    const otp = generateOtp(this.config.get<string>('auth.otpLength'));
+    const otp = generateOtp(this.config.get<string>("auth.otpLength"));
 
     /**
      * Save the OTP in cache.
      */
     const cacheKey = Cache.genKey({
-      type: 'PASSWORD_CHANGE_OTP',
+      type: "PASSWORD_CHANGE_OTP",
       userEmail: dto.email,
     });
 
     await Cache.store().set(
       cacheKey,
       otp,
-      this.config.get<string>('auth.otpExpiry'),
+      this.config.get<string>("auth.otpExpiry")
     );
 
     const mail = MailMessage.init()
-      .greeting('Hey there')
-      .line('Please find below your OTP for resetting your password!')
+      .greeting("Hey there")
+      .line("Please find below your OTP for resetting your password!")
       .inlineCode(otp);
 
     await Mail.init().to(dto.email).send(mail);
   }
 
   async verifyOtpForPasswordChange(
-    dto: VerifyOtpForChangePasswordDto,
+    dto: VerifyOtpForChangePasswordDto
   ): Promise<string> {
     const cacheKey = Cache.genKey({
-      type: 'PASSWORD_CHANGE_OTP',
+      type: "PASSWORD_CHANGE_OTP",
       userEmail: dto.email,
     });
     const otpFromCache = await Cache.store().get(cacheKey);
@@ -141,25 +141,25 @@ export class AuthService {
     if (!otpFromCache) {
       throw new ValidationFailed({
         otp: [
-          'Oops! Either the given OTP was never requested for this email or it has expired!',
+          "Oops! Either the given OTP was never requested for this email or it has expired!",
         ],
       });
     }
 
     if (otpFromCache !== dto.otp) {
       throw new ValidationFailed({
-        otp: ['Invalid OTP entered!'],
+        otp: ["Invalid OTP entered!"],
       });
     }
 
-    const payload = { email: dto.email, purpose: 'CHANGE_PASSWORD' };
+    const payload = { email: dto.email, purpose: "CHANGE_PASSWORD" };
     const token = sign(
       payload,
-      this.config.get<string>('auth.secret') as Secret,
+      this.config.get<string>("auth.secret") as Secret,
       {
-        issuer: this.config.get<string>('app.url'),
-        expiresIn: '15m',
-      },
+        issuer: this.config.get<string>("app.url"),
+        expiresIn: "15m",
+      }
     );
 
     return token;
@@ -173,15 +173,15 @@ export class AuthService {
       {
         password: hashSync(dto.password, 10),
         passwordChangedAt: new Date(),
-      },
+      }
     );
   }
 
   async verifyToken(token: string): Promise<Record<string, any>> {
     const payload = (await verify(
       token,
-      this.config.get('auth.secret') as string,
-      { issuer: this.config.get('app.url') as string },
+      this.config.get("auth.secret") as string,
+      { issuer: this.config.get("app.url") as string }
     )) as JwtPayload;
 
     return payload;
@@ -189,9 +189,9 @@ export class AuthService {
 
   async makeToken(payload: Record<string, any>): Promise<string> {
     const options: SignOptions = {
-      issuer: this.config.get('app.url') as string,
-      expiresIn: this.config.get('auth.ttl') as StringValue,
+      issuer: this.config.get("app.url") as string,
+      expiresIn: this.config.get("auth.ttl") as StringValue,
     };
-    return sign(payload, this.config.get('auth.secret') as Secret, options);
+    return sign(payload, this.config.get("auth.secret") as Secret, options);
   }
 }

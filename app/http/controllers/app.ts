@@ -1,4 +1,4 @@
-import { UserService } from '#services/index';
+import { UserService } from "#services/index";
 import {
   Controller,
   Get,
@@ -6,7 +6,7 @@ import {
   Request,
   Res,
   Response,
-} from '@intentjs/core/http';
+} from "@intentjs/core/http";
 
 @Controller()
 export class UserController {
@@ -14,6 +14,6 @@ export class UserController {
 
   @Get()
   async getHello(@Req() req: Request, @Res() res: Response) {
-    return res.json({ hello: 'world' });
+    return res.json({ hello: "world" });
   }
 }

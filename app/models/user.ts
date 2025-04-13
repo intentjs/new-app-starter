@@ -1,7 +1,7 @@
-import { BaseModel } from '@intentjs/core/db';
+import { BaseModel } from "@intentjs/core/db";
 
 export class UserModel extends BaseModel {
-  static tableName = 'users';
+  static tableName = "users";
 
   /**
    * You can define the name of the database connection

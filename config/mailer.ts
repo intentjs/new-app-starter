@@ -1,13 +1,13 @@
-import { configNamespace } from '@intentjs/core/config';
-import { MailerOptions } from '@intentjs/core/mail';
+import { configNamespace } from "@intentjs/core/config";
+import { MailerOptions } from "@intentjs/core/mail";
 
 export default configNamespace(
-  'mailers',
+  "mailers",
   (): MailerOptions => ({
     /**
      * The default channel for your mailer.
      */
-    default: process.env.DEFAULT_MAILER || 'logger',
+    default: process.env.DEFAULT_MAILER || "logger",
 
     /**
      * -----------------------------------------------------
@@ -21,7 +21,7 @@ export default configNamespace(
      */
     channels: {
       logger: {
-        provider: 'logger',
+        provider: "logger",
       },
     },
 
@@ -31,5 +31,5 @@ export default configNamespace(
         title: process.env.APP_NAME,
       },
     },
-  }),
+  })
 );

@@ -1,6 +1,6 @@
-import { configNamespace } from '@intentjs/core/config';
+import { configNamespace } from "@intentjs/core/config";
 
-export default configNamespace('auth', () => ({
+export default configNamespace("auth", () => ({
   /**
    * -----------------------------------------------------
    * JWT SECRET
@@ -17,7 +17,7 @@ export default configNamespace('auth', () => ({
    *
    * This value determines the life time of the jwt token.
    */
-  ttl: process.env.JWT_TTL || '3h',
+  ttl: process.env.JWT_TTL || "3h",
 
   /**
    * Length of the OTP generated on password reset.

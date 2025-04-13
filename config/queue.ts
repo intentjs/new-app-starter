@@ -1,7 +1,7 @@
-import { configNamespace } from '@intentjs/core/config';
-import { QueueOptions } from '@intentjs/core/queue';
+import { configNamespace } from "@intentjs/core/config";
+import { QueueOptions } from "@intentjs/core/queue";
 
-export default configNamespace('queue', (): QueueOptions => {
+export default configNamespace("queue", (): QueueOptions => {
   return {
     /**
      * -----------------------------------------------------
@@ -13,7 +13,7 @@ export default configNamespace('queue', (): QueueOptions => {
      * This will be used to determine the messag queue where
      * the message should be processed.
      */
-    default: process.env.DEFAULT_QUEUE || 'sync',
+    default: process.env.DEFAULT_QUEUE || "sync",
 
     /**
      * -----------------------------------------------------
@@ -28,10 +28,10 @@ export default configNamespace('queue', (): QueueOptions => {
      */
     connections: {
       db: {
-        driver: 'db',
-        listenerType: 'poll',
-        table: 'intent_jobs',
-        queue: 'default',
+        driver: "db",
+        listenerType: "poll",
+        table: "intent_jobs",
+        queue: "default",
       },
     },
   };

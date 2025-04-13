@@ -1,5 +1,5 @@
-import { Transformer } from '@intentjs/core';
-import { UserModel } from '#models/user';
+import { Transformer } from "@intentjs/core";
+import { UserModel } from "#models/user";
 
 export class UserTransformer extends Transformer {
   async transform(user: UserModel): Promise<Record<string, any> | null> {

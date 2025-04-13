@@ -1,9 +1,9 @@
-import { toBoolean, ValidationErrorSerializer } from '@intentjs/core';
-import { configNamespace } from '@intentjs/core/config';
-import { AppConfig } from '@intentjs/core/app';
+import { toBoolean, ValidationErrorSerializer } from "@intentjs/core";
+import { configNamespace } from "@intentjs/core/config";
+import { AppConfig } from "@intentjs/core/app";
 
 export default configNamespace(
-  'app',
+  "app",
   (): AppConfig => ({
     /**
      * -----------------------------------------------------
@@ -14,7 +14,7 @@ export default configNamespace(
      * used when the framework needs to place the application's
      * name in a notification or any other location as required.
      */
-    name: process.env.APP_NAME || 'Intent App',
+    name: process.env.APP_NAME || "Intent App",
 
     /**
      * -----------------------------------------------------
@@ -24,7 +24,7 @@ export default configNamespace(
      * This value determines the "environment" your application
      * is running in. You may set this value in ".env" file.
      */
-    env: process.env.APP_ENV || 'local',
+    env: process.env.APP_ENV || "local",
 
     /**
      * -----------------------------------------------------
@@ -44,7 +44,7 @@ export default configNamespace(
      * This URL is used by the console to generate complete
      * accessible URLs for your application.
      */
-    url: process.env.APP_URL || 'localhost',
+    url: process.env.APP_URL || "localhost",
 
     /**
      * -----------------------------------------------------
@@ -88,5 +88,5 @@ export default configNamespace(
       profilesSampleRate: 1.0,
       integrateNodeProfile: true,
     },
-  }),
+  })
 );

@@ -1,7 +1,7 @@
-import { IntentApplicationContext, ServiceProvider } from '@intentjs/core';
-import { UserDbRepository } from '#repositories/user-repository';
-import { UserService } from '#services/index';
-import { AuthService } from '#services/auth';
+import { IntentApplicationContext, ServiceProvider } from "@intentjs/core";
+import { UserDbRepository } from "#repositories/user-repository";
+import { UserService } from "#services/index";
+import { AuthService } from "#services/auth";
 
 export class AppServiceProvider extends ServiceProvider {
   /**
@@ -21,7 +21,7 @@ export class AppServiceProvider extends ServiceProvider {
      *
      * Read more - https://tryintent.com/docs/providers#class-based-providers
      */
-    this.bindWithClass('USER_DB_REPO', UserDbRepository);
+    this.bindWithClass("USER_DB_REPO", UserDbRepository);
   }
 
   /**

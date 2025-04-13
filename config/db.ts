@@ -1,15 +1,15 @@
-import { DatabaseOptions } from '@intentjs/core/db';
-import { configNamespace } from '@intentjs/core/config';
-import { knexSnakeCaseMappers } from 'objection';
+import { DatabaseOptions } from "@intentjs/core/db";
+import { configNamespace } from "@intentjs/core/config";
+import { knexSnakeCaseMappers } from "objection";
 
 export default configNamespace(
-  'db',
+  "db",
   (): DatabaseOptions => ({
     isGlobal: true,
-    default: process.env.DEFAULT_DB || 'pg',
+    default: process.env.DEFAULT_DB || "pg",
     connections: {
       pg: {
-        client: 'pg',
+        client: "pg",
         debug: !!+process.env.DB_DEBUG,
         connection: {
           host: process.env.DB_HOST,
@@ -17,14 +17,14 @@ export default configNamespace(
           database: process.env.DB_DATABASE,
           user: process.env.DB_USER,
           password: process.env.DB_PASSWORD,
-          charset: 'utf8',
+          charset: "utf8",
         },
         useNullAsDefault: true,
         migrations: {
-          directory: './database/migrations',
+          directory: "./database/migrations",
         },
         ...knexSnakeCaseMappers(),
       },
     },
-  }),
+  })
 );

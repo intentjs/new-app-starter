@@ -1,8 +1,8 @@
-import { LocalizationOptions } from '@intentjs/core/locale';
-import { configNamespace } from '@intentjs/core/config';
+import { LocalizationOptions } from "@intentjs/core/locale";
+import { configNamespace } from "@intentjs/core/config";
 
 export default configNamespace(
-  'localization',
+  "localization",
   (): LocalizationOptions => ({
     /**
      * -----------------------------------------------------
@@ -14,7 +14,7 @@ export default configNamespace(
      * used when you use the `Storage` facade to access your
      * files.
      */
-    path: 'resources/lang',
+    path: "resources/lang",
 
     /**
      * -----------------------------------------------------
@@ -24,6 +24,6 @@ export default configNamespace(
      * This value is used to define the default lang that
      * will be used when you are using translations in your app.
      */
-    fallbackLang: 'en',
-  }),
+    fallbackLang: "en",
+  })
 );

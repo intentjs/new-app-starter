@@ -1,8 +1,8 @@
-import { CacheOptions } from '@intentjs/core/cache';
-import { configNamespace } from '@intentjs/core/config';
+import { CacheOptions } from "@intentjs/core/cache";
+import { configNamespace } from "@intentjs/core/config";
 
 export default configNamespace(
-  'cache',
+  "cache",
   (): CacheOptions => ({
     /**
      * -----------------------------------------------------
@@ -14,7 +14,7 @@ export default configNamespace(
      * will be used when you use the `Cache` facade to access
      * your cache.
      */
-    default: process.env.DEFAULT_CACHE || 'memory',
+    default: process.env.DEFAULT_CACHE || "memory",
 
     /**
      * -----------------------------------------------------
@@ -29,9 +29,9 @@ export default configNamespace(
      */
     stores: {
       memory: {
-        driver: 'memory',
-        prefix: '',
+        driver: "memory",
+        prefix: "",
       },
     },
-  }),
+  })
 );

@@ -3,12 +3,12 @@ import {
   LoggerOptions,
   LogLevel,
   Transports,
-} from '@intentjs/core/logger';
-import { configNamespace } from '@intentjs/core/config';
-import { toBoolean } from '@intentjs/core/helpers';
+} from "@intentjs/core/logger";
+import { configNamespace } from "@intentjs/core/config";
+import { toBoolean } from "@intentjs/core/helpers";
 
 export default configNamespace(
-  'logger',
+  "logger",
   (): LoggerOptions => ({
     /**
      * -----------------------------------------------------
@@ -19,7 +19,7 @@ export default configNamespace(
      * This value is the name of the default logger. This will be
      * used when you use the `Log()` facade.
      */
-    default: 'app',
+    default: "app",
 
     /**
      * -----------------------------------------------------
@@ -60,7 +60,7 @@ export default configNamespace(
          *
          * Log Levels - "error", "warn", "info", "http", "verbose", "debug"
          */
-        level: (process.env.LOG_LEVEL as LogLevel) || 'debug',
+        level: (process.env.LOG_LEVEL as LogLevel) || "debug",
 
         /**
          * -----------------------------------------------------
@@ -78,10 +78,10 @@ export default configNamespace(
           {
             transport: Transports.File,
             format: Formats.Json,
-            options: { filename: 'intent.log' },
+            options: { filename: "intent.log" },
           },
         ],
       },
     },
-  }),
+  })
 );
