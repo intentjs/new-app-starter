@@ -2,6 +2,7 @@ import { IntentApplicationContext, ServiceProvider } from "@intentjs/core";
 import { UserDbRepository } from "#repositories/user-repository";
 import { UserService } from "#services/index";
 import { AuthService } from "#services/auth";
+import { Schedule } from "@intentjs/core/schedule";
 
 export class AppServiceProvider extends ServiceProvider {
   /**
@@ -27,5 +28,11 @@ export class AppServiceProvider extends ServiceProvider {
   /**
    * Bootstrap any application service here.
    */
-  boot(app: IntentApplicationContext) {}
+  boot(app: IntentApplicationContext) {
+    Schedule.call(() => {
+      console.log("Hello, world!");
+    })
+      .everyTwoSeconds()
+      .run();
+  }
 }
