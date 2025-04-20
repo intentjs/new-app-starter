@@ -88,5 +88,32 @@ export default configNamespace(
       profilesSampleRate: 1.0,
       integrateNodeProfile: true,
     },
+
+    /**
+     * -----------------------------------------------------
+     * Scheduler Configuration
+     * -----------------------------------------------------
+     *
+     * This property defines the configuration for the scheduler.
+     */
+    schedules: {
+      /**
+       * -----------------------------------------------------
+       * Run in another thread
+       * -----------------------------------------------------
+       *
+       * This property defines whether the scheduler should run in another thread.
+       */
+      runInAnotherThread: true,
+
+      /**
+       * -----------------------------------------------------
+       * Timezone
+       * -----------------------------------------------------
+       *
+       * This property defines the timezone for the scheduler.
+       */
+      timezone: "Asia/Kolkata",
+    },
   })
 );

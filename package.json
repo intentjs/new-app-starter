@@ -1,6 +1,6 @@
 {
   "name": "@intentjs/new-app-starter",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A starter template for intent application",
   "author": "Vinayak Sarawagi <vinayaksarawagi25@gmail.com>",
   "private": false,
@@ -43,7 +43,7 @@
     "#validators/*": "./app/validators/*.js"
   },
   "dependencies": {
-    "@intentjs/core": "^0.1.55",
+    "@intentjs/core": "^0.1.59",
     "bcrypt": "^5.1.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",

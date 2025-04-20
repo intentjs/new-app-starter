@@ -1,4 +1,8 @@
-import { IntentApplicationContext, ServiceProvider } from "@intentjs/core";
+import {
+  IntentApplicationContext,
+  ModuleRef,
+  ServiceProvider,
+} from "@intentjs/core";
 import { UserDbRepository } from "#repositories/user-repository";
 import { UserService } from "#services/index";
 import { AuthService } from "#services/auth";
@@ -31,6 +35,26 @@ export class AppServiceProvider extends ServiceProvider {
   boot(app: IntentApplicationContext) {
     Schedule.call(() => {
       console.log("Hello, world!");
+    })
+      .everyTwoSeconds()
+      .run();
+  }
+
+  /**
+   * Shutdown the application.
+   *
+   * @param app - The application context.
+   */
+  shutdown(app: IntentApplicationContext) {}
+
+  /**
+   * Define the schedules for the application.
+   *
+   * @param ref - The module reference.
+   */
+  async schedules(ref: ModuleRef): Promise<void> {
+    Schedule.call(() => {
+      console.log("Hello, world from app service provider!");
     })
       .everyTwoSeconds()
       .run();
