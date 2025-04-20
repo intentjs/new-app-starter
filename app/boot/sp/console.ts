@@ -31,11 +31,5 @@ export class ConsoleServiceProvider extends ServiceProvider {
    *
    * @param ref - The module reference.
    */
-  async schedules(ref: ModuleRef): Promise<void> {
-    Schedule.call(() => {
-      console.log("Hello, world!");
-    })
-      .everyTwoSeconds()
-      .run();
-  }
+  async schedules(ref: ModuleRef): Promise<void> {}
 }
