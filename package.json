@@ -27,6 +27,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "imports": {
+    "#bin/*": "./bin/*.js",
     "#http/*": "./app/http/*.js",
     "#models/*": "./app/models/*.js",
     "#services/*": "./app/services/*.js",
@@ -57,7 +58,7 @@
     "winston": "^3.14.2"
   },
   "devDependencies": {
-    "@intentjs/cli": "^0.0.18",
+    "@intentjs/cli": "^0.0.21",
     "@intentjs/tooling": "^0.0.3",
     "@intentjs/ts-node": "^0.0.2",
     "@nestjs/testing": "^10.0.0",
